@@ -27,11 +27,22 @@ app.config(function($routeProvider, $locationProvider) {
 function getMeows(){
 		$http.get('/meows').then(function(responce){
 				$scope.meows=responce.data;
-			});		
-}
+			                                      });	
+                   }
 getMeows();
+			$scope.submitNewMeow=function(){
+			$http.post('/meows',{newMeow: $scope.newMeow}).then(function(){
+				getMeows();
+				$scope.newMeow='';
+			})	;
+};
+$scope.removeMeow=function(meow){
+$http.put('/meows/remove',{ meow: meow}).then(function(){
+	getMeows();
+});
 
-		});
+		};
+});
 
 app.controller('SignupController', function($scope,$http){
 	

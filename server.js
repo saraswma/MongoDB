@@ -4,6 +4,7 @@ var mongoose=require('mongoose');
 var app = express();
 var Meow = mongoose.model('Meow', {
  text: String
+ 
   });
 
 app.use(bodyParser.json());
@@ -17,7 +18,8 @@ app.get('/meows',function(req,res,next){
 
 app.post('/meows', function(req, res, next){	
 		var newMeow = new Meow({
-			text: req.body.newMeow		
+			text: req.body.newMeow
+			
 		});
 		newMeow.save(function(err){
 			return res.send("Added Successfully");
